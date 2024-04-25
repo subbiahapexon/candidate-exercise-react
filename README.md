@@ -61,17 +61,18 @@ Picture yourself as the architect of an innovative task management tool. Your ta
 - **User Authentication**: 15 points
 - **Task Sorting and Filtering**: 15 points
 - **Responsive Design**: 20 points
+- **Documentation**: 20 points
 
 ### Submission Guidelines:
 
-1. **GitHub Repository**: Fork this repository [insert GitHub link] to embark on your coding journey.
+1. **GitHub Repository**: Fork this repository [cprime-talent/candidate-exercise-react](https://github.com/cprime-talent/candidate-exercise-react) to embark on your coding journey.
 2. **Readme**: Provide comprehensive instructions for running your project locally, showcasing your communication skills.
 3. **Code Quality**: Write elegant, well-documented code to earn those extra brownie points.
 4. **Bonus Points**: Blow us away with your creativity, attention to detail, and problem-solving prowess.
 
 ### Deadline:
 
-The deadline for submission is [insert deadline here]. Remember, it's not just about finishing first; it's about crafting a masterpiece!
+The deadline for submission is 3 days from creating your fork. Remember, it's not just about finishing first; it's about crafting a masterpiece!
 
 ### Good Luck, React & React Native Ninja! 🍀
 
