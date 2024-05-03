@@ -101,10 +101,7 @@ function App() {
           <TasksManager />
         </>
       ) : (
-        <div>
-          <SignUp onSignUp={handleSignUp} />
-          <Login onLogin={handleLogin} />
-        </div>
+        <Login onLogin={handleLogin} />
       )}
     </div>
   );

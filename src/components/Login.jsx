@@ -1,37 +1,16 @@
 // Login.js
 import React, { useState } from "react";
-import styled from "styled-components";
-
-const FormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Form = styled.form`
-  width: 100%;
-  max-width: 400px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-`;
+import { Button, TextField, Box } from "@mui/material";
+import SignUp from "./SignUp";
+import { FormContainer, BoxStyled, BtnBox } from "./LoginStyle";
 
 function Login({ onLogin }) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
+  const [showSignup, setShowSignup] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -41,27 +20,54 @@ function Login({ onLogin }) {
     e.preventDefault();
     onLogin(formData);
   };
+  const handleShowSignup = () => {
+    setShowSignup(true);
+  };
 
   return (
-    <FormContainer>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <Button type="submit">Login</Button>
-      </Form>
-    </FormContainer>
+    <>
+      {showSignup ? (
+        <SignUp />
+      ) : (
+        <FormContainer>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            noValidate
+            sx={{ mt: 1 }}
+          >
+            <BoxStyled>
+              <TextField
+                id="outlined-basic"
+                variant="outlined"
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </BoxStyled>
+            <BoxStyled>
+              <TextField
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </BoxStyled>
+            <BtnBox>
+              <Button type="submit" variant="contained">
+                Login
+              </Button>
+              <Button variant="text" onClick={handleShowSignup}>
+                Sign Up
+              </Button>
+            </BtnBox>
+          </Box>
+        </FormContainer>
+      )}
+    </>
   );
 }
 

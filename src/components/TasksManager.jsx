@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
 import TaskList from "./TasksList";
 import AddTaskForm from "./AddTaskForm";
-
-const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-`;
-
-const Heading = styled.h1`
-  text-align: center;
-  margin-bottom: 20px;
-`;
+import { ToggleButtonGroup, ToggleButton, MenuItem } from "@mui/material";
+import {
+  Container,
+  Heading,
+  FilterContainer,
+  SearchBox,
+  SearchDiv,
+  SearchSpan,
+} from "./TasksManagerStyle";
 
 function TasksManager() {
   const [tasks, setTasks] = useState([]);
@@ -22,6 +19,7 @@ function TasksManager() {
   const [searchResult, setSearchResult] = useState([]);
   const [sortedTasks, setSortedTasks] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
+  // const [alignment, setAlignment] = React.useState("asc");
 
   useEffect(() => {
     fetch("https://dummyjson.com/todos")
@@ -77,8 +75,9 @@ function TasksManager() {
     }
   }, [sortedTasks, searchText]);
 
-  const handleSortChange = () => {
-    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  const handleSortChange = (event, newAlignment) => {
+    setSortOrder(newAlignment);
+    // setAlignment(newAlignment);
   };
 
   useEffect(() => {
@@ -101,17 +100,30 @@ function TasksManager() {
         updateTask={updateTask}
       />
       <Heading>Task List</Heading>
-      <div>
-        <label>Sort By Name:</label>
-        <button onClick={handleSortChange}>Toggle Order</button>
-      </div>
-      <div>
-        <input
-          type="test"
-          value={searchText}
-          onChange={(e) => serachTodos(e.target.value)}
-        />
-      </div>
+      <FilterContainer>
+        <div>
+          <ToggleButtonGroup
+            color="primary"
+            value={sortOrder}
+            exclusive
+            onChange={handleSortChange}
+            aria-label="Platform"
+          >
+            <ToggleButton value="asc">ASC</ToggleButton>
+            <ToggleButton value="desc">DESC</ToggleButton>
+          </ToggleButtonGroup>
+          {/* <button onClick={handleSortChange}>ASC</button> */}
+        </div>
+        <SearchDiv>
+          <SearchSpan></SearchSpan>
+
+          <SearchBox
+            type="test"
+            value={searchText}
+            onChange={(e) => serachTodos(e.target.value)}
+          />
+        </SearchDiv>
+      </FilterContainer>
       <TaskList
         tasks={searchResult}
         deleteTask={deleteTask}

@@ -1,31 +1,7 @@
 // SignUp.js
 import React, { useState } from "react";
-import styled from "styled-components";
-
-const FormContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const Form = styled.form`
-  width: 100%;
-  max-width: 400px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-`;
+import { TextField, Box, Button } from "@mui/material";
+import { FormContainer, BoxStyled, BtnBox } from "./LoginStyle";
 
 function SignUp({ onSignUp }) {
   const [formData, setFormData] = useState({
@@ -44,23 +20,34 @@ function SignUp({ onSignUp }) {
 
   return (
     <FormContainer>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <Input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        <Button type="submit">Sign Up</Button>
-      </Form>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <BoxStyled>
+          <TextField
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </BoxStyled>
+        <BoxStyled>
+          <TextField
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </BoxStyled>
+        <BtnBox>
+          <Button type="submit" variant="contained">
+            Sign Up
+          </Button>
+          <Button type="button" variant="contained">
+            Back
+          </Button>
+        </BtnBox>
+      </Box>
     </FormContainer>
   );
 }
