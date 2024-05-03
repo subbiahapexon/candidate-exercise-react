@@ -1,40 +1,8 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-
-const List = styled.ul`
-  list-style-type: none;
-  padding: 0;
-`;
-
-const ListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  margin-bottom: 10px;
-`;
-
-const TaskTitle = styled.span`
-  font-weight: bold;
-`;
-
-const TaskDescription = styled.span`
-  color: #666;
-`;
-
-const Actions = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Button = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin-left: 5px;
-`;
+import React from "react";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import { List, ListItem, TaskDescription, Actions } from "./TasksListStyle";
 
 const TaskList = ({ tasks, deleteTask, editTask }) => {
   console.log("tasks", tasks);
@@ -49,8 +17,22 @@ const TaskList = ({ tasks, deleteTask, editTask }) => {
                 <TaskDescription>{task.todo}</TaskDescription>
               </div>
               <Actions>
-                <Button onClick={() => editTask(task)}>Edit</Button>
-                <Button onClick={() => deleteTask(task.id)}>Delete</Button>
+                <IconButton
+                  aria-label="delete"
+                  size="large"
+                  color="error"
+                  onClick={() => deleteTask(task.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+                <IconButton
+                  aria-label="delete"
+                  size="large"
+                  color="info"
+                  onClick={() => editTask(task)}
+                >
+                  <EditIcon />
+                </IconButton>
               </Actions>
             </ListItem>
           ))}

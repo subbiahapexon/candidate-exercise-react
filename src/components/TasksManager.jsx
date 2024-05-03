@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TaskList from "./TasksList";
 import AddTaskForm from "./AddTaskForm";
-import { ToggleButtonGroup, ToggleButton, MenuItem } from "@mui/material";
+import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import {
   Container,
   Heading,
@@ -19,7 +19,6 @@ function TasksManager() {
   const [searchResult, setSearchResult] = useState([]);
   const [sortedTasks, setSortedTasks] = useState([]);
   const [sortOrder, setSortOrder] = useState("asc");
-  // const [alignment, setAlignment] = React.useState("asc");
 
   useEffect(() => {
     fetch("https://dummyjson.com/todos")
@@ -41,9 +40,10 @@ function TasksManager() {
     const response = await axios.delete(
       `https://dummyjson.com/todos/${taskId}`
     );
-    console.log(response);
-    setTasks(tasks.filter((task) => task.id !== taskId));
-    setEditingTask(null); // Reset editing task if it's being deleted
+    if (response.ok) {
+      setTasks(tasks.filter((task) => task.id !== taskId));
+      setEditingTask(null); // Reset editing task if it's being deleted
+    }
   };
 
   const editTask = (task) => {

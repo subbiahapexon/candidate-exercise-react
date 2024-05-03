@@ -3,19 +3,24 @@ import React, { useState } from "react";
 import { TextField, Box, Button } from "@mui/material";
 import { FormContainer, BoxStyled, BtnBox } from "./LoginStyle";
 
-function SignUp({ onSignUp }) {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+function SignUp({ onSignUp, onBack }) {
+  const [signupData, setSignupData] = useState({
+    username: "",
+    useremail: "",
+    userpassword: "",
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSignupData({ ...signupData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSignUp(formData);
+    onSignUp(signupData);
+  };
+
+  const handleBack = () => {
+    onBack();
   };
 
   return (
@@ -24,18 +29,27 @@ function SignUp({ onSignUp }) {
         <BoxStyled>
           <TextField
             type="email"
-            name="email"
+            name="useremail"
             placeholder="Email"
-            value={formData.email}
+            value={signupData.useremail}
+            onChange={handleChange}
+          />
+        </BoxStyled>
+        <BoxStyled>
+          <TextField
+            type="text"
+            name="username"
+            placeholder="UserName"
+            value={signupData.username}
             onChange={handleChange}
           />
         </BoxStyled>
         <BoxStyled>
           <TextField
             type="password"
-            name="password"
+            name="userpassword"
             placeholder="Password"
-            value={formData.password}
+            value={signupData.userpassword}
             onChange={handleChange}
           />
         </BoxStyled>
@@ -43,7 +57,7 @@ function SignUp({ onSignUp }) {
           <Button type="submit" variant="contained">
             Sign Up
           </Button>
-          <Button type="button" variant="contained">
+          <Button type="button" variant="contained" onClick={handleBack}>
             Back
           </Button>
         </BtnBox>

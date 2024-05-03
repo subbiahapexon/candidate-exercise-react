@@ -24,6 +24,9 @@ export const SearchBox = styled.input`
   border: 1px solid #aaa;
   border-radius: 5px;
   text-indent: 10px;
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;
 export const SearchSpan = styled(SearchIcon)`
   position: absolute;

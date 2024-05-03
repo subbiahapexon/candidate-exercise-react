@@ -17,21 +17,39 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
 
-  const handleSignUp = (user) => {
+  const handleSignUp = async (user) => {
+    console.log(user);
     // Simulate signup process and store user data
-    setUserData(user);
+    setUserData({ name: user.useremail });
     setIsLoggedIn(true);
   };
 
-  const handleLogin = (credentials) => {
+  const handleLogin = async (credentials) => {
     // Simulate login process and authenticate user
-    // Dummy authentication: Check if credentials match dummy user data
-    if (
-      credentials.email === "dummy@example.com" &&
-      credentials.password === "password"
-    ) {
-      setIsLoggedIn(true);
-      setUserData({ email: credentials.email });
+    // Used Dummy json authentication: Check if credentials match user data
+    if (credentials) {
+      const username = credentials.name;
+      const password = credentials.password;
+      try {
+        const response = await fetch("https://dummyjson.com/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message);
+        } else {
+          const userData = await response.json();
+          setIsLoggedIn(true);
+          setUserData({ name: userData.email });
+        }
+      } catch (error) {
+        alert(error.message);
+      }
     } else {
       alert("Invalid email or password");
     }
@@ -69,7 +87,7 @@ function App() {
                   size="large"
                   edge="end"
                   color="inherit"
-                  aria-label="show email"
+                  aria-label="show name"
                   aria-controls="menu-appbar"
                   aria-haspopup="true"
                   onClick={handleMenuOpen}
@@ -92,7 +110,7 @@ function App() {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                 >
-                  <MenuItem>{userData.email}</MenuItem>
+                  <MenuItem>{userData.name}</MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
@@ -101,7 +119,7 @@ function App() {
           <TasksManager />
         </>
       ) : (
-        <Login onLogin={handleLogin} />
+        <Login onLogin={handleLogin} onSignUp={handleSignUp} />
       )}
     </div>
   );

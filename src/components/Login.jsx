@@ -4,9 +4,9 @@ import { Button, TextField, Box } from "@mui/material";
 import SignUp from "./SignUp";
 import { FormContainer, BoxStyled, BtnBox } from "./LoginStyle";
 
-function Login({ onLogin }) {
+function Login({ onLogin, onSignUp }) {
   const [formData, setFormData] = useState({
-    email: "",
+    name: "",
     password: "",
   });
 
@@ -24,10 +24,14 @@ function Login({ onLogin }) {
     setShowSignup(true);
   };
 
+  const handleBackBtn = () => {
+    setShowSignup(false);
+  };
+
   return (
     <>
       {showSignup ? (
-        <SignUp />
+        <SignUp onSignUp={onSignUp} onBack={handleBackBtn} />
       ) : (
         <FormContainer>
           <Box
@@ -40,9 +44,9 @@ function Login({ onLogin }) {
               <TextField
                 id="outlined-basic"
                 variant="outlined"
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="name"
+                placeholder="User Name"
                 value={formData.email}
                 onChange={handleChange}
               />
