@@ -40,10 +40,9 @@ function TasksManager() {
     const response = await axios.delete(
       `https://dummyjson.com/todos/${taskId}`
     );
-    if (response.ok) {
-      setTasks(tasks.filter((task) => task.id !== taskId));
-      setEditingTask(null); // Reset editing task if it's being deleted
-    }
+
+    setTasks(tasks.filter((task) => task.id !== taskId));
+    setEditingTask(null); // Reset editing task if it's being deleted
   };
 
   const editTask = (task) => {
