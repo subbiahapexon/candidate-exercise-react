@@ -26,9 +26,9 @@ Used DummyJson API for authedication
 
 Enter the below credential for login
 
-### username: 'kminchelle'
+#### username: 'kminchelle'
 
-### password: '0lelplR'
+#### password: '0lelplR'
 
 Add Task: enter taks name Click on the "Add Task" button.
 
@@ -39,7 +39,9 @@ Delete Task: Click on the "Delete" button next to the task you want to remove.
 ## Built With
 
 React - JavaScript library for building user interfaces.
+
 Matrial UI - UI framework for creating views
+
 styled-components - CSS code to style your components
 
 ## **Note: **
