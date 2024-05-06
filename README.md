@@ -48,6 +48,6 @@ styled-components - CSS code to style your components
 
 All CRUD (Create, Read, Update, Delete) operations have been implemented successfully. The UI is fully functional and responsive.
 
-The signup functionality is currently only implemented on the client-side for viewing purposes and does not call any API to save user data.
+The signup functionality logic is implemented but not working as expected becoz of Dummyjson API not provided any api to careate user.
 
 The list of tasks is fetched from a dummy JSON data source. While it effectively fetches data, it does not update or delete data from the actual server. However, the logic for CRUD operations is already in place and can be easily integrated with a server-side API.

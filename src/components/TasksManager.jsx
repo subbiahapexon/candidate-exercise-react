@@ -37,9 +37,7 @@ function TasksManager() {
   };
 
   const deleteTask = async (taskId) => {
-    const response = await axios.delete(
-      `https://dummyjson.com/todos/${taskId}`
-    );
+    await axios.delete(`https://dummyjson.com/todos/${taskId}`);
 
     setTasks(tasks.filter((task) => task.id !== taskId));
     setEditingTask(null); // Reset editing task if it's being deleted

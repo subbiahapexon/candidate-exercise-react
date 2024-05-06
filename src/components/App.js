@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SignUp from "./SignUp";
 import Login from "./Login";
 import TasksManager from "./TasksManager";
 import {
@@ -19,7 +18,21 @@ function App() {
 
   const handleSignUp = async (user) => {
     console.log(user);
-    // Simulate signup process and store user data
+    // Simulate signup process and  call API to store user data
+
+    // fetch("https://dummyjson.com/users/add", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     username: user.username,
+    //     email: user.email,
+    //     password: user.password,
+    //     /* other user data */
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then(console.log);
+
     setUserData({ name: user.useremail });
     setIsLoggedIn(true);
   };
